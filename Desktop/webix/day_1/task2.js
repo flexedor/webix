@@ -74,7 +74,7 @@ var left_form= {
             return value < 10000 && value > 0;
         },
         rating: function (value) {
-            return value > 0;
+            return value > 0 && value < 10;
         }
     }
 };

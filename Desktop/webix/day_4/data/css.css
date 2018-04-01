@@ -1,0 +1,27 @@
+.greenButton.webix_el_button button{
+    background:green;
+    border:1px solid green;
+    color: #ffffff;
+}
+.greenText{
+    font-weight:bold;
+    color: green;
+}
+backgroundList {
+    background-color: rgb(247, 241, 241);
+}
+.copirite {
+    text-align:center;
+}
+.menu, .menu .webix_list{
+    background-color:#eee;
+}
+.myhover.webix_cell{
+    background: orange;
+}
+.newtime{
+    background-color: #00ff5a;
+}
+.rank{
+    background-color:#d2e3ef;
+}
