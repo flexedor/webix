@@ -42,6 +42,7 @@ var data=   {rows:
                     id:"mydata",
                     autoConfig:true,
                     hover:"myhover",
+                   select: true,
                     columns:[
                         { id:"rank", header:[""], css:"rank", width:50 },
                         { id:"title", header:["Film title",{ content:"textFilter"}], fillspace:true },
@@ -52,27 +53,23 @@ var data=   {rows:
                     ],
                     url:"data/data.js",
                     scrollX: false,
-                    on:{
-                        onItemClick:function(id, e, trg){
-                            if (id.column==="deleter"){
-                                webix.message("the line number "+id.row+" was delited");
-                                this.remove(id);
-                                return false;
-                            }
-
-
-
-
-
-
-                    }
-                }}
+                    on: {
+                        onSelectChange: function () {
+                            var item = $$("mydata").getSelectedItem();
+                            $$("myform").setValues(item);
+                        }
+                    },
+                    onClick:{
+                        'fa-trash':function(e, id){
+                            this.remove(id);
+                            return false;
+                        }
+                     }}
 
 
             ]
             };
-var right_form=
-    {
+var right_form= {
     view: "form",
     id: "myform",
     elements: [
@@ -84,9 +81,17 @@ var right_form=
         {
             cols: [
                 {
-                    view: "button", label: "Add new", type: "form", click: function () {
-                        if ($$("myform").validate()) {
+                    view: "button", label: "Add new", type: "form", click: function (item) {
+                        if (item.id!==null) {
+                           
+
                             var item = $$("myform").getValues();
+                            $$("mydata").updateItem(item.id);
+                        }
+
+                        else {
+                            var item = $$("myform").getValues();
+
                             $$("mydata").add(item);
                         }
                     }
@@ -110,10 +115,10 @@ var right_form=
             return value >= 1950 && value <= 2018;
         },
         votes: function (value) {
-            return value < 1000000 && value > 0;
+            return  value < 1000000,1111 ;
         },
         rating: function (value) {
-            return value > 0 && value < 10.1;
+            return value > 0 && value < 10,1;
         }
     }
 };
@@ -154,7 +159,11 @@ var second_cells_list= {
 
                         }
                     },
-                  
+                    onClick:{
+                        'fa-trash':function(e, id) {
+                            this.remove(id);
+                            return false;
+                        }},
                     select:true,
                     url:"data/users.js"
                 }
