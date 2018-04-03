@@ -83,16 +83,16 @@ var right_form= {
                 {
                     view: "button", label: "Add new", type: "form", click: function (item) {
                         if (item.id!==null) {
-                           
-
                             var item = $$("myform").getValues();
-                            $$("mydata").updateItem(item.id);
+                            debugger
+                            $$("mydata").updateItem(item.id,item);
+                            debugger
                         }
 
                         else {
-                            var item = $$("myform").getValues();
+                            var item1 = $$("myform").getValues();
 
-                            $$("mydata").add(item);
+                            $$("mydata").add(item1);
                         }
                     }
                 },
